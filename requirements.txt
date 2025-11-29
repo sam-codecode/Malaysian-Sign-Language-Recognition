@@ -1,0 +1,14 @@
+flask
+flask-socketio
+eventlet==0.35.2
+gunicorn
+
+torch
+scikit-learn
+opencv-python
+numpy
+mediapipe
+joblib
+
+pyttsx3
+sounddevice

@@ -1,0 +1,128 @@
+/* static/style.css - contained layout so video doesn't become full-screen */
+
+:root {
+  --bg: #071028;
+  --panel: #0f172a;
+  --accent: #f59e0b;
+  --green: #10b981;
+  --muted: #94a3b8;
+  --card-radius: 10px;
+  --max-width: 900px;
+}
+
+/* Page */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(180deg, #061226 0%, #07121a 100%);
+  color: #e6eef8;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+.page { display: flex; flex-direction: column; align-items: center; padding: 18px; }
+
+/* Header */
+header { text-align: center; margin-bottom: 8px; }
+header h1 { margin: 0; font-size: 20px; }
+header .subtitle { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+
+/* Main area container */
+.main-area { width: 100%; max-width: var(--max-width); box-sizing: border-box; }
+
+/* Media area: stack video + controls vertically (no side scrolling) */
+.media-area {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Video wrapper: fixed sensible size so it doesn't expand to full viewport */
+.video-wrapper {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  max-width: 100%;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+}
+
+/* Video element fills the wrapper but won't overflow the page */
+#video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Canvas overlays video exactly and is non-interactive */
+#canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Predicted word area (preserve spaces) */
+#predicted-word {
+  width: 640px;
+  max-width: 100%;
+  background: rgba(255,255,255,0.02);
+  padding: 12px;
+  border-radius: 8px;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 18px;
+  white-space: pre-wrap; /* preserve spaces and newlines */
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+
+/* Buttons row */
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 640px;
+  max-width: 100%;
+  justify-content: center;
+}
+.button-row button {
+  flex: 1 1 calc(25% - 10px);
+  min-width: 100px;
+  padding: 10px 12px;
+  background: linear-gradient(180deg,#111827,#0f172a);
+  color: #e6eef8;
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.button-row button:active { transform: translateY(1px); }
+
+/* Reference image container below buttons */
+.ref-container {
+  margin-top: 6px;
+  width: 640px;
+  max-width: 100%;
+  text-align: center;
+}
+.ref-image {
+  max-width: 360px;   /* keeps it small */
+  width: 80%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.5);
+  background: #061326;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .video-wrapper { width: 92vw; height: calc(92vw * 0.75); } /* 4:3 */
+  #predicted-word, .button-row, .ref-container { width: 92vw; }
+  .button-row button { flex: 1 1 48%; min-width: 44%; }
+  .ref-image { max-width: 280px; }
+}
