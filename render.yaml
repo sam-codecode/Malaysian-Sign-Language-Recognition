@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: msl-recognition
-    env: python
-    plan: free
-    region: singapore
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn --worker-class eventlet -w 1 app:app"
-    pythonVersion: 3.10.12
