@@ -7,8 +7,9 @@ torch
 scikit-learn
 opencv-python
 numpy
-mediapipe
+mediapipe-python
 joblib
 
 pyttsx3
 sounddevice
+
