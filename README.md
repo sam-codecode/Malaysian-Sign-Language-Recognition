@@ -32,7 +32,7 @@ Features
 | **Real-Time Streaming** | Socket.IO              |
 | **Speech Engine**       | pyttsx3                |
 
-LIVE AT : 
+LIVE AT : https://huggingface.co/spaces/SamuelParker/Malaysian-Sign-Language-Recognition
 
 Installation for you to run on local :  
 1. Clone the repo :   
