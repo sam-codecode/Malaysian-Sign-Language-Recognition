@@ -6,7 +6,7 @@ from collections import deque
 import time
 
 # --- Load model & preprocessing ---
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu") # Use gpa if available, otherwise use cpa
 
 label_mapping = joblib.load("label_mapping.pkl")
 scaler = joblib.load("scaler.pkl")
@@ -16,9 +16,9 @@ model.load_state_dict(torch.load("hand_sign_model.pth", map_location=device))
 model.eval()
 
 # --- Stability logic ---
-history = deque(maxlen=15)  # last 15 frames
+history = deque(maxlen=15)  
 stable_start_time = None
-STABLE_DURATION = 0.5  # seconds
+STABLE_DURATION = 0.5  # duration to finalize the character
 last_char_sent = None
 
 def predict_live(features):
