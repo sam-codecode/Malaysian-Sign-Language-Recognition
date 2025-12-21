@@ -120,3 +120,4 @@ socket.on('update_text',text => {
     currentText = localStableText;
 });
 
+
