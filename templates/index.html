@@ -10,7 +10,7 @@
   <div class="page">
     <header>
       <h1>MSL Real-time Recognition</h1>
-      <p class="subtitle">Live preview (orange) — Confirmed text (green)</p>
+      <p class="subtitle">Live preview (orange) : :  Confirmed text (green)</p>
     </header>
 
     <main class="main-area">
@@ -19,23 +19,19 @@
           <video id="video" autoplay playsinline muted></video>
           <canvas id="canvas" aria-hidden="true"></canvas>
         </div>
-
         <div id="predicted-word" aria-live="polite"></div>
-
         <div id="buttons" class="button-row">
           <button onclick="sendButton('delete')">Delete</button>
           <button onclick="sendButton('clear')">Clear</button>
           <button onclick="sendButton('space')">Space</button>
           <button onclick="sendButton('read')">Read</button>
         </div>
-
         <div class="ref-container">
           <img src="{{ url_for('static', filename='sign_reference.png') }}" alt="MSL Reference" class="ref-image">
         </div>
       </section>
     </main>
   </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
