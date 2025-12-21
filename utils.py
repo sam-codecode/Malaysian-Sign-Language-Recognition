@@ -1,4 +1,4 @@
-# utils.py
+# This file enable the program to use local speaker for audio - output when read button clicked
 import pyttsx3
 
 def speak_text(text):
@@ -14,9 +14,9 @@ def speak_text(text):
         engine.setProperty('rate', 175)     # reading speed
         engine.setProperty('volume', 1.0)   # max volume
         voices = engine.getProperty('voices')
-        # pick voice index safely (fall back to 0)
+        # pick voice index safely 
         try:
-            engine.setProperty('voice', voices[1].id)  # prefer female if available
+            engine.setProperty('voice', voices[1].id)  # prefer female 
         except Exception:
             engine.setProperty('voice', voices[0].id)
 
