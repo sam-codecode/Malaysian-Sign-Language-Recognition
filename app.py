@@ -1,19 +1,16 @@
-# app.py
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import base64
 import cv2
 import numpy as np
 from utils import speak_text
-from model_utils import predict_live  # your stable/predict logic
+from model_utils import predict_live  # Stable predictive logic code file
 import mediapipe as mp
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
-
-current_text = ""
-
-# --- MediaPipe hands (share instance to avoid re-init cost) ---
+current_text = ""  # Initialized with empty string
+# --- MediaPipe hands  ---
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(
     static_image_mode=False,
@@ -49,7 +46,7 @@ def handle_frame(data):
             for hand_landmarks in results.multi_hand_landmarks:
                 for lm in hand_landmarks.landmark:
                     row.extend([lm.x, lm.y, lm.z])
-            # Pad for 2 hands (if only 1 detected)
+            # Pad for 2 hands - 1
             if len(results.multi_hand_landmarks) == 1:
                 row.extend([0.0, 0.0, 0.0] * 21)
             row = np.array(row)
@@ -75,7 +72,6 @@ def handle_button(data):
     """
     global current_text
     btn = data.get('button', '')
-
     if btn == "delete":
         current_text = ""
     elif btn == "clear":
@@ -89,7 +85,6 @@ def handle_button(data):
 
     # send the updated text back to frontend
     emit('update_text', current_text)
-
 if __name__ == "__main__":
     # `debug=False` recommended in production
     socketio.run(app, host="0.0.0.0", port=5000, debug=True)
