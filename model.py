@@ -1,3 +1,4 @@
+# Neural Network implemented using PyTorch
 import torch
 import torch.nn as nn
 
@@ -17,3 +18,4 @@ class HandSignModel(nn.Module):
         out = self.relu2(out)
         out = self.fc3(out)
         return out
+
